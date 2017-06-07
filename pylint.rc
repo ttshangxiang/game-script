@@ -1,0 +1,2 @@
+extension-pkg-whitelist=lxml
+unsafe-load-any-extensions=yes
