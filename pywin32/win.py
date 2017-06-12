@@ -4,6 +4,7 @@
 获取窗口
 '''
 import win32gui, win32con
+
 def callback(hwnd, extra):
     text = win32gui.GetWindowText(hwnd).decode('mbcs').encode('utf-8')
     if (extra['find'] in text):
@@ -14,3 +15,9 @@ def getWindow(str):
     obj = {'find': str, 'hwnd': None}
     win32gui.EnumWindows(callback, obj)
     return obj['hwnd']
+
+def getWindowRect(hwnd):
+    return win32gui.GetWindowRect(hwnd)
+
+def foucs(hwnd):
+    return win32gui.SetForegroundWindow(hwnd)
