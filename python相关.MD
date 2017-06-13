@@ -7,6 +7,7 @@
 3. pywin32，win32api的python版本。  
 4. Pillow，PIL的一个版本，也是一个图像处理工具，我用这个来截图，opencv-python+pywin32，按道理也可以，但是我没写出来。  
 5. numpy，opencv-python会依赖这个。  
+6. pylint，代码监测工具。
 
 ## 安装这些包
 pip没有安装之前，不能使用pip install，或者有些库pip没有，去网上搜安装包，包有exe、tar.gz、whl等种类。  
