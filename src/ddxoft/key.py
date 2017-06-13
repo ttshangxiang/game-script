@@ -1,14 +1,7 @@
 #coding=utf-8
 #pylint: disable=maybe-no-member
-'''
-发送鼠标键盘事件
-'''
-import ctypes
+import ddxoft.dd as dd
 import time
-import os
-
-path = os.path.split(os.path.realpath(__file__))[0]
-dd_dll = ctypes.cdll.LoadLibrary(path + '\dd71800x64.64.dll')
 
 # DD虚拟码，可以用DD内置函数转换。
 vk = {'5': 205, 'c': 503, 'n': 506, 'z': 501, '3': 203, '1': 201, 'd': 403, '0': 210, 'l': 409, '8': 208, 'w': 302,
@@ -20,34 +13,16 @@ vk = {'5': 205, 'c': 503, 'n': 506, 'z': 501, '3': 203, '1': 201, 'd': 403, '0':
 vk2 = {'"': "'", '#': '3', ')': '0', '^': '6', '?': '/', '>': '.', '<': ',', '+': '=', '*': '8', '&': '7', '{': '[', '_': '-',
         '|': '\\', '~': '`', ':': ';', '$': '4', '}': ']', '%': '5', '@': '2', '!': '1', '(': '9'}
 
-def key(code):
-    # 进行一组按键。
+# 进行一组按键。
+def keypress(code):
+    dd.DD_key(vk[code], 1)
+    time.sleep(0.2)
+    dd.DD_key(vk[code], 2)
 
-    dd_dll.DD_key(vk[code], 1)
-    time.sleep(0.2)
-    dd_dll.DD_key(vk[code], 2)
-
-def click(x, y):
-    # 进行一次点击
-    dd_dll.DD_mov(x, y)
-    time.sleep(0.2)
-    dd_dll.DD_btn(1)
-    time.sleep(0.2)
-    dd_dll.DD_btn(2)
-    time.sleep(0.2)
-
+# 键盘按下
 def keyDown(code):
-    dd_dll.DD_key(vk[code], 1)
+    dd.DD_key(vk[code], 1)
 
+# 键盘弹起
 def keyUp(code):
-    dd_dll.DD_key(vk[code], 2)
-
-def move(x, y):
-    print x, y
-    dd_dll.DD_mov(x, y)
-
-def down():
-    dd_dll.DD_btn(1)
-
-def up():
-    dd_dll.DD_btn(2)
+    dd.DD_key(vk[code], 2)
